@@ -65,3 +65,6 @@ data_frame_merge = pd.merge(data_frame1,
 # Check result
 print(data_frame_merge.head(5))
 print(f"Rows in merged data frame = {len(data_frame_merge)}")
+
+# Output to .csv
+data_frame_merge.to_csv('output.csv', index=False)
