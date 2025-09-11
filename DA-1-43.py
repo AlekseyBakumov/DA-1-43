@@ -51,10 +51,6 @@ def create_data_frame2():
 data_frame1 = create_data_frame1()
 data_frame2 = create_data_frame2()
 
-#print(data_frame1.head())
-print(f"Rows in data frame 1 = {len(data_frame1)}")
-#print(data_frame2.head())
-print(f"Rows in data frame 2 = {len(data_frame2)}")
 
 # Method of merge can be changed here (add how="<method>")
 # See pd.merge description to see available options 
@@ -63,7 +59,14 @@ data_frame_merge = pd.merge(data_frame1,
                             on="id")
 
 # Check result
+#print("Data frame 1:")
+#print(data_frame1.head())
+#print("Data frame 2:")
+#print(data_frame2.head())
+print("Merge result:")
 print(data_frame_merge.head(5))
+print(f"Rows in data frame 1 = {len(data_frame1)}")
+print(f"Rows in data frame 2 = {len(data_frame2)}")
 print(f"Rows in merged data frame = {len(data_frame_merge)}")
 
 # Output to .csv
