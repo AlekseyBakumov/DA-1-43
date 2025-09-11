@@ -50,18 +50,19 @@ def create_data_frame2():
 # Two data frames, with common key "id"
 data_frame1 = create_data_frame1()
 data_frame2 = create_data_frame2()
+key_column = "id"
 
-# Validate data frames
-if "id" not in data_frame1.columns:
-    raise ValueError("First data frame have no <id> column")
-if "id" not in data_frame2.columns:
-    raise ValueError("Second data frame have no <id> column")
+# Check if <id> key is present
+if key_column not in data_frame1.columns:
+    raise ValueError(f"First data frame have no {key_column} column")
+if key_column not in data_frame2.columns:
+    raise ValueError(f"Second data frame have no {key_column} column")
 
 # Method of merge can be changed here (add how="<method>")
 # See pd.merge description to see available options 
 data_frame_merge = pd.merge(data_frame1,
                             data_frame2,
-                            on="id")
+                            on=key_column)
 
 # Check result
 #print("Data frame 1:")
