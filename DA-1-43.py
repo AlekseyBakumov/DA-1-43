@@ -51,6 +51,11 @@ def create_data_frame2():
 data_frame1 = create_data_frame1()
 data_frame2 = create_data_frame2()
 
+# Validate data frames
+if "id" not in data_frame1.columns:
+    raise ValueError("First data frame have no <id> column")
+if "id" not in data_frame2.columns:
+    raise ValueError("Second data frame have no <id> column")
 
 # Method of merge can be changed here (add how="<method>")
 # See pd.merge description to see available options 
