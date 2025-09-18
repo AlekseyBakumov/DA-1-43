@@ -28,7 +28,32 @@ def __create_data_frame2__():
     return data_frame
 
 def pandas_merge(data_frame1, data_frame2, key_column, csv_output=False):
-    
+    """
+    Performs merge of two dataframes.
+
+    Parameters
+    ----------
+    data_frame1 : pd.DataFrame
+        First dataframe.
+    data_frame2 : pd.DataFrame
+        Second dataframe.
+    key_column  : str
+        Name of a column on which dataframes will be merged.
+
+    Returns
+    -------
+    pd.DataFrame
+        Result of merge.
+    """
+
+    if isinstance(data_frame1, pd.DataFrame) is False:
+        raise ValueError(f"First argument supposed to be pd.DataFrame")
+    if isinstance(data_frame2, pd.DataFrame) is False:
+        raise ValueError(f"Second argument supposed to be pd.DataFrame")
+    if isinstance(key_column, str) is False:
+        raise ValueError(f"Third argument supposed to be string")
+
+
     if key_column not in data_frame1.columns:
         raise ValueError(f"First data frame have no {key_column} column")
     if key_column not in data_frame2.columns:
