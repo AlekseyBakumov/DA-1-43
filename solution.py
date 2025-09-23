@@ -4,7 +4,7 @@ import pandas as pd
 def __create_data_frame1__():
     data_frame = pd.DataFrame(
         {
-            "id": [0,    1,    2,    3   ],
+            "id": [0,    1,    2,    3,  ],
             "A":  ["A0", "A1", "A2", "A3"],
             "B":  ["B0", "B1", "B2", "B3"],
             "C":  ["C0", "C1", "C2", "C3"],
@@ -27,7 +27,7 @@ def __create_data_frame2__():
         )
     return data_frame
 
-def pandas_merge(data_frame1, data_frame2, key_column, csv_output=False):
+def pandas_merge(data_frame1, data_frame2, key_column, how_to='inner', csv_output=False):
     """
     Performs merge of two dataframes.
 
@@ -39,6 +39,10 @@ def pandas_merge(data_frame1, data_frame2, key_column, csv_output=False):
         Second dataframe.
     key_column  : str
         Name of a column on which dataframes will be merged.
+    how_to      : str   (optional, default='inner')
+        Merge method (inner, outer, left, right).
+    csv_output  : bool  (optional, default=False')
+        Set True, to output the result into .csv file.
 
     Returns
     -------
@@ -52,6 +56,11 @@ def pandas_merge(data_frame1, data_frame2, key_column, csv_output=False):
         raise ValueError(f"Second argument supposed to be pd.DataFrame")
     if isinstance(key_column, str) is False:
         raise ValueError(f"Third argument supposed to be string")
+    if True in list(data_frame1.duplicated()):
+        raise ValueError(f"First DataFrame contains dublicates")
+    if True in list(data_frame2.duplicated()):
+        raise ValueError(f"Second DataFrame contains dublicates")
+
 
 
     if key_column not in data_frame1.columns:
@@ -59,12 +68,10 @@ def pandas_merge(data_frame1, data_frame2, key_column, csv_output=False):
     if key_column not in data_frame2.columns:
         raise ValueError(f"Second data frame have no {key_column} column")
     
-    
-    # Method of merge can be changed here (add how="<method>")
-    # See pd.merge description to see available options 
     data_frame_merge = pd.merge(data_frame1,
                                 data_frame2,
-                                on=key_column)
+                                on=key_column,
+                                how=how_to)
     
     if csv_output:
         data_frame_merge.to_csv('pandas_merge_output.csv', index=False)
