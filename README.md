@@ -4,7 +4,7 @@ Two data frames are merged by common key ('id' in example)
 
 Result will have data in columns from both frames
 
-Performed with inner join (by default, can be changed with parameter 'how=')
+Performed with inner join (by default, can be changed with parameter 'how_to=')
 #
 With this method, result will consist of rows,
 that have their keys in both data frames, e.g.
